@@ -1,0 +1,289 @@
+{
+  "initial": {
+    "/gauges/config": {
+      "status": 200,
+      "kind": "json",
+      "body": {
+        "revision": "W1",
+        "now": "2026-12-01T08:00:00+08:00",
+        "capacity": 3,
+        "rollover": "2026-12-01T08:07:00+08:00"
+      }
+    },
+    "/gauges/index": {
+      "status": 200,
+      "kind": "json",
+      "body": {
+        "parts": [
+          {
+            "key": "G4/b18/2",
+            "href": "/gauges/raw/b18-2.csv",
+            "round": "R1",
+            "slot": "A",
+            "axis": "face",
+            "basis": "B7",
+            "until": "2026-12-01T08:03:00+08:00",
+            "copies": [
+              "G8/c22/7"
+            ]
+          },
+          {
+            "key": "G8/c22/7",
+            "href": "/gauges/raw/c22-7.csv",
+            "round": "R1",
+            "slot": "A",
+            "axis": "face",
+            "basis": "B7",
+            "until": "2026-12-01T08:18:00+08:00",
+            "copies": []
+          },
+          {
+            "key": "G4/b19/2",
+            "href": "/gauges/raw/b19-2.csv",
+            "round": "R2",
+            "slot": "A",
+            "axis": "reverse",
+            "basis": "B7",
+            "until": "2026-12-01T08:20:00+08:00",
+            "copies": []
+          },
+          {
+            "key": "G4/b19/3",
+            "href": "/gauges/raw/b19-3.csv",
+            "round": "R3",
+            "slot": "B",
+            "axis": "face",
+            "basis": "B8",
+            "until": "2026-12-01T08:04:00+08:00",
+            "copies": []
+          },
+          {
+            "key": "G9/q50/1",
+            "href": "/gauges/raw/q50-1.csv",
+            "round": "R4",
+            "slot": "C",
+            "axis": "face",
+            "basis": "B9",
+            "until": "2026-12-01T08:04:00+08:00",
+            "copies": []
+          }
+        ]
+      }
+    },
+    "/gauges/raw/b18-2.csv": {
+      "status": 200,
+      "kind": "csv",
+      "body": "position,pitch_um,diagnostic\n1,42,diag-18\n2,43,diag-18\n"
+    },
+    "/gauges/raw/c22-7.csv": {
+      "status": 200,
+      "kind": "csv",
+      "body": "position,pitch_um,diagnostic\n1,42,diag-22\n2,43,diag-22\n"
+    },
+    "/gauges/raw/b19-2.csv": {
+      "status": 200,
+      "kind": "csv",
+      "body": "position,pitch_um,diagnostic\n1,39,diag-19\n"
+    },
+    "/gauges/raw/b19-3.csv": {
+      "status": 200,
+      "kind": "csv",
+      "body": "position,pitch_um,diagnostic\n3,44,diag-19\n"
+    },
+    "/gauges/raw/q50-1.csv": {
+      "status": 200,
+      "kind": "csv",
+      "body": "position,pitch_um,diagnostic\n4,46,diag-50\n"
+    },
+    "/gauges/bases": {
+      "status": 200,
+      "kind": "json",
+      "body": {
+        "records": [
+          {
+            "id": "B7",
+            "axes": [
+              "face",
+              "reverse"
+            ],
+            "status": "issued"
+          },
+          {
+            "id": "B9",
+            "axes": [
+              "face"
+            ],
+            "status": "issued"
+          }
+        ]
+      }
+    },
+    "/quality/orders": {
+      "status": 200,
+      "kind": "json",
+      "body": {
+        "orders": [
+          {
+            "id": "O41",
+            "deadline": "2026-12-01T08:12:00+08:00",
+            "priority": 1,
+            "lines": [
+              [
+                "A",
+                "R1",
+                "face",
+                1,
+                "A-01"
+              ],
+              [
+                "A",
+                "R1",
+                "face",
+                2,
+                "A-02"
+              ],
+              [
+                "B",
+                "R3",
+                "face",
+                3,
+                "B-03"
+              ]
+            ]
+          },
+          {
+            "id": "O42",
+            "deadline": "2026-12-01T08:06:00+08:00",
+            "priority": 2,
+            "lines": [
+              [
+                "C",
+                "R4",
+                "face",
+                4,
+                "C-04"
+              ]
+            ]
+          },
+          {
+            "id": "O43",
+            "deadline": "2026-12-01T08:35:00+08:00",
+            "priority": 1,
+            "lines": [
+              [
+                "A",
+                "R2",
+                "reverse",
+                1,
+                "A-11"
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "changes": [
+    {
+      "label": "检具覆盖且买方收件",
+      "routes": {
+        "/gauges/raw/b18-2.csv": {
+          "status": 410,
+          "kind": "json",
+          "body": {
+            "message": "缓冲已覆盖"
+          }
+        },
+        "/gauges/config": {
+          "status": 200,
+          "kind": "json",
+          "body": {
+            "revision": "W2",
+            "now": "2026-12-01T08:07:00+08:00",
+            "capacity": 3,
+            "rollover": "2026-12-01T08:14:00+08:00"
+          }
+        }
+      }
+    },
+    {
+      "label": "基准后补且追溯更正",
+      "routes": {
+        "/gauges/bases": {
+          "status": 200,
+          "kind": "json",
+          "body": {
+            "records": [
+              {
+                "id": "B7",
+                "axes": [
+                  "face",
+                  "reverse"
+                ],
+                "status": "issued"
+              },
+              {
+                "id": "B8",
+                "axes": [
+                  "face"
+                ],
+                "status": "issued"
+              },
+              {
+                "id": "B9",
+                "axes": [
+                  "face"
+                ],
+                "status": "issued"
+              },
+              {
+                "id": "B7.1",
+                "axes": [
+                  "face"
+                ],
+                "supersedes": "B7",
+                "applies": [
+                  "R1"
+                ],
+                "status": "issued"
+              }
+            ]
+          }
+        },
+        "/gauges/raw/c22-7.csv": {
+          "status": 200,
+          "kind": "csv",
+          "body": "position,pitch_um,diagnostic\n1,41,diag-22\n2,43,diag-22\n"
+        },
+        "/gauges/validity": {
+          "status": 200,
+          "kind": "json",
+          "body": {
+            "key": "G8/c22/7",
+            "state": "disputed",
+            "valid_digest": null
+          }
+        }
+      }
+    }
+  ],
+  "forms": {
+    "/buyer/intake": {
+      "operations": [
+        "submit",
+        "supplement",
+        "amend"
+      ],
+      "identifier": "BUY",
+      "outcomes": {
+        "0": {
+          "submit": {
+            "A-02": "rejected",
+            "B-03": "rejected"
+          }
+        }
+      },
+      "browser": false
+    }
+  }
+}
